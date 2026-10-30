@@ -3,6 +3,7 @@
 }
 
 body {
+    position: relative;
     margin: 0;
     background:
         radial-gradient(ellipse at top, rgba(255,255,255,0.65), transparent 55%),
@@ -19,23 +20,27 @@ img {
 }
 
 header {
-    max-width: 1160px;
-    margin: 34px auto 28px;
-    padding: 28px 34px;
-    background: #fffdf9;
-    border: 1px solid #e4dbce;
-    border-bottom: 4px solid #a15d36;
-    box-shadow: 0 8px 24px rgba(38, 34, 31, 0.08);
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 1;
+    max-width: none;
+    margin: 0;
+    padding: clamp(24px, 5vw, 72px);
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    pointer-events: none;
 }
 
 header h1 {
     margin: 0;
-    color: #332a24;
+    color: #fff;
     font-family: Georgia, "Times New Roman", serif;
     font-size: clamp(2.4rem, 6vw, 4.8rem);
     font-weight: 500;
     letter-spacing: -0.035em;
     line-height: 1;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.65);
 }
 
 main {
@@ -44,7 +49,8 @@ main {
     gap: 28px 24px;
     max-width: 1160px;
     margin: 0 auto 64px;
-    padding: 0 20px;
+    padding: 100vh 20px 0;
+    padding-top: 100svh;
 }
 
 main > section {
@@ -52,16 +58,18 @@ main > section {
 }
 
 main > section[id="1"] {
-    grid-column: 1 / -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     overflow: hidden;
-    max-height: 560px;
-    border: 10px solid #fffdf9;
-    box-shadow: 0 8px 24px rgba(38, 34, 31, 0.13);
+    height: 100vh;
+    height: 100svh;
 }
 
 main > section[id="1"] img {
     width: 100%;
-    height: clamp(280px, 48vw, 540px);
+    height: 100%;
     object-fit: cover;
 }
 
@@ -124,21 +132,15 @@ main > section[id="5"] img {
     object-fit: cover;
 }
 
-body.scrollFadesReady main > section[id="1"],
 body.scrollFadesReady main > section[id="2"],
-body.scrollFadesReady main > section[id="3"],
-body.scrollFadesReady main > section[id="4"],
-body.scrollFadesReady main > section[id="5"] {
+body.scrollFadesReady main > section[id="3"] {
     opacity: 0;
     transform: translateY(28px);
     transition: opacity 900ms ease, transform 900ms ease;
 }
 
-body.scrollFadesReady main > section[id="1"].isVisible,
 body.scrollFadesReady main > section[id="2"].isVisible,
-body.scrollFadesReady main > section[id="3"].isVisible,
-body.scrollFadesReady main > section[id="4"].isVisible,
-body.scrollFadesReady main > section[id="5"].isVisible {
+body.scrollFadesReady main > section[id="3"].isVisible {
     opacity: 1;
     transform: translateY(0);
 }
@@ -369,14 +371,14 @@ section[id="7"] .wallCopyFinalCopy {
 
 @media (max-width: 680px) {
     header {
-        margin: 18px 14px 20px;
-        padding: 22px;
+        padding: 24px 20px;
     }
 
     main {
         grid-template-columns: 1fr;
         gap: 18px;
-        padding: 0 14px;
+        padding: 100vh 14px 0;
+        padding-top: 100svh;
     }
 
     main > section{
@@ -451,11 +453,8 @@ section[id="7"] .wallCopyFinalCopy {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    body.scrollFadesReady main > section[id="1"],
     body.scrollFadesReady main > section[id="2"],
-    body.scrollFadesReady main > section[id="3"],
-    body.scrollFadesReady main > section[id="4"],
-    body.scrollFadesReady main > section[id="5"] {
+    body.scrollFadesReady main > section[id="3"] {
         opacity: 1;
         transform: none;
         transition: none;

@@ -1,5 +1,5 @@
 const fadeSections = document.querySelectorAll(
-    'main > section[id="1"], main > section[id="2"], main > section[id="3"], main > section[id="4"], main > section[id="5"]'
+    'main > section[id="2"], main > section[id="3"]'
 );
 
 if ("IntersectionObserver" in window) {
